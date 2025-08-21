@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BKS Cincos</title>
+
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Material Symbols Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <!-- Lottie Player -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <!-- QR Code Generator -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 1. Animated Background -->
+    <div class="background-gradient"></div>
+
+    <!-- 2. Login Screen (Overlay) -->
+    <div id="login-screen" class="screen-overlay">
+        <div class="login-box">
+            <h1>BKS Cincos</h1>
+            <p>التسوق والخدمات الاحترافية</p>
+            <form id="login-form">
+                <div class="input-group">
+                    <span class="material-symbols-outlined">mail</span>
+                    <input type="email" placeholder="البريد الإلكتروني" required>
+                </div>
+                <div class="input-group">
+                    <span class="material-symbols-outlined">lock</span>
+                    <input type="password" placeholder="كلمة المرور" required>
+                </div>
+                <div class="input-group">
+                    <span class="material-symbols-outlined">group</span>
+                    <input type="text" placeholder="كود الإحالة (اختياري)">
+                </div>
+                <button type="submit" class="btn btn-primary">تسجيل الدخول</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Welcome Modal (Hidden by default) -->
+    <div id="welcome-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>مرحبًا بك في BKS Cincos!</h2>
+            <p>التسوق والخدمات بين يديك.</p>
+            <a href="https://t.me/ta_ta_ta_123" target="_blank" class="btn btn-telegram">
+                <span class="material-symbols-outlined">send</span>
+                خدمة العملاء على تليجرام
+            </a>
+        </div>
+    </div>
+
+
+    <!-- 3. Main App Container -->
+    <div id="app-container" class="hidden">
+        <!-- App Header -->
+        <header class="app-header">
+            <div class="logo">BKS Cincos</div>
+            <div class="header-actions">
+                <button class="btn btn-icon" data-page="deposit"><span class="material-symbols-outlined">add_card</span> إيداع</button>
+                <button class="btn btn-icon" data-page="withdraw"><span class="material-symbols-outlined">payments</span> سحب</button>
+            </div>
+        </header>
+
+        <!-- Page Viewer (Horizontal Scroller) -->
+        <main class="page-viewer">
+            <div class="pages-wrapper">
+                <!-- Pages will be injected here by app.js -->
+            </div>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-index="0"><span class="material-symbols-outlined">home</span><p>الرئيسية</p></button>
+            <button class="nav-item" data-index="1"><span class="material-symbols-outlined">workspace_premium</span><p>VIP</p></button>
+            <button class="nav-item" data-index="2"><span class="material-symbols-outlined">share</span><p>الدعوات</p></button>
+            <button class="nav-item" data-index="3"><span class="material-symbols-outlined">task_alt</span><p>المهام</p></button>
+            <button class="nav-item" data-index="4"><span class="material-symbols-outlined">person</span><p>أنا</p></button>
+        </nav>
+    </div>
+
+    <!-- Main Logic Script -->
+    <script src="app.js"></script>
+</body>
+</html>
