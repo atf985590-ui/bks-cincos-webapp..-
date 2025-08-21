@@ -1,0 +1,224 @@
+/* --- إعدادات أساسية وهوية بصرية --- */
+:root {
+    --primary: #6C5CE7;
+    --secondary: #00D1B2;
+    --accent: #FFB020;
+    --background: #1a1a2e;
+    --surface: #16213e;
+    --text-primary: #ffffff;
+    --text-secondary: #a7a9be;
+    --font-family: 'Cairo', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background);
+    color: var(--text-primary);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* --- الخلفية المتدرجة المتحركة --- */
+.background-gradient {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+    background: linear-gradient(-45deg, #0f1020, var(--primary), var(--surface), var(--secondary));
+    background-size: 400% 400%;
+    animation: gradient-flow 15s ease infinite;
+}
+
+@keyframes gradient-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- شاشة تسجيل الدخول --- */
+.screen-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    transition: opacity 0.5s ease, visibility 0.5s;
+}
+.screen-overlay.hidden { opacity: 0; visibility: hidden; }
+
+.login-box {
+    background: rgba(22, 33, 62, 0.8);
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fade-in-up 0.7s ease;
+}
+.login-box h1 { font-size: 2.5rem; color: var(--accent); }
+.input-group {
+    display: flex;
+    align-items: center;
+    background: var(--background);
+    border-radius: 10px;
+    margin: 1rem 0;
+    padding: 0 1rem;
+}
+.input-group .material-symbols-outlined { color: var(--text-secondary); }
+.input-group input {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 1rem 0.5rem;
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    font-size: 1rem;
+}
+.input-group input:focus { outline: none; }
+
+/* --- الأزرار --- */
+.btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+}
+.btn:active { transform: scale(0.95); }
+.btn-primary { background: var(--primary); color: white; }
+.btn-icon { background: var(--surface); color: var(--text-primary); }
+
+/* --- هيكل التطبيق الرئيسي --- */
+#app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    transition: opacity 0.5s ease;
+}
+#app-container.hidden { opacity: 0; pointer-events: none; }
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(15, 16, 32, 0.5);
+}
+.logo { font-size: 1.5rem; font-weight: 900; color: var(--accent); }
+.header-actions { display: flex; gap: 0.5rem; }
+
+/* --- نظام الانتقال الأفقي للصفحات --- */
+.page-viewer {
+    flex: 1;
+    overflow: hidden;
+}
+.pages-wrapper {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* تأثير احترافي */
+}
+.page {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    overflow-y: auto;
+    animation: fade-in 0.6s ease;
+}
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* --- شريط التمرير (Ticker) --- */
+.withdrawal-ticker {
+    background: var(--secondary);
+    color: var(--background);
+    padding: 0.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: 700;
+}
+.ticker-content {
+    display: inline-block;
+    animation: ticker-scroll 10s linear infinite;
+}
+@keyframes ticker-scroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* --- بطاقات VIP --- */
+.vip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+.vip-card {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: transform 0.3s, border-color 0.3s;
+    animation: shake 5s infinite;
+}
+.vip-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent);
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* --- صفحة الإيداع --- */
+.deposit-method {
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.deposit-method img { width: 40px; height: 40px; }
+.deposit-info { flex: 1; }
+.deposit-info small { color: var(--text-secondary); }
+#qrcode {
+    background: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* --- شريط التنقل السفلي --- */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    background: rgba(15, 16, 32, 0.8);
+    backdrop-filter: blur(5px);
+    padding: 0.5rem 0;
+}
+.nav-item {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+}
+.nav-item.active { color: var(--accent); transform: scale(1.1); }
+.nav-item p { margin-top: 4px; font-size: 0.75rem; }
